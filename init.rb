@@ -3,6 +3,7 @@ require 'redmine'
 Rails.configuration.to_prepare do
   require 'grit'
   require 'gollum'
+  require 'gollum-lib'
   require_dependency 'gollum_project_model_patch'
   require_dependency 'gollum_projects_helper_patch'
   require_dependency 'gollum_projects_controller_patch'
@@ -12,6 +13,7 @@ Rails.configuration.to_prepare do
   ProjectsController.send(:include, GollumProjectsControllerPatch) unless ProjectsController.included_modules.include?(GollumProjectsControllerPatch)
   ProjectsHelper.send(:include, GollumProjectsHelperPatch) unless ProjectsHelper.included_modules.include?(GollumProjectsHelperPatch)
 end
+
 
 Redmine::Plugin.register :redmine_gollum do
   name 'Redmine Gollum plugin'
